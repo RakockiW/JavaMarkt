@@ -1,4 +1,4 @@
-package main.java.market;
+package main.java.market.product;
 public class Product {
     
     private String code;
