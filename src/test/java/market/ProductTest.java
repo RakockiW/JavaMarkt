@@ -2,7 +2,7 @@ package test.java.market;
 
 import org.junit.*;
 
-import main.java.market.product.Product;
+import main.java.market.Product;
 
 import static org.junit.Assert.assertEquals;
 
