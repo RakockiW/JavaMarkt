@@ -1,8 +1,6 @@
 package main.java.market.cart;
 
-import main.java.market.command.Command;
-
-public class GetProductsCommand implements Command {
+public class GetProductsCommand implements CartCommand {
     
     private ShoppingCart cart;
     

@@ -8,6 +8,7 @@ public class ShoppingCart {
 
     public Product[] products = new Product[0];
 
+
     public void addProduct(Product product) {
        
         int n;
@@ -104,11 +105,18 @@ public class ShoppingCart {
     }
 
     public double getTotalPrice() {
-        double total = 0;
+        double totalPrice = 0;
         for (Product product : products) {
-            total += product.getPrice();
+            totalPrice += product.getPrice();
         }
-        return total;
+
+        return totalPrice;
+    }
+
+    public void applyDiscount(double discount) {
+        for (Product product : products) {
+            product.setPrice(product.getPrice() * (1 - discount));
+        }
     }
 
 }

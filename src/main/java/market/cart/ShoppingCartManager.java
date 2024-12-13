@@ -2,20 +2,18 @@ package main.java.market.cart;
 
 import java.util.ArrayList;
 
-import main.java.market.command.Command;
-
 public class ShoppingCartManager {
 
-    public ArrayList<Command> commands;
+    public ArrayList<CartCommand> commands;
 
     public ShoppingCartManager() {
         commands = new ArrayList<>();
     }
-    public void addCommand(Command command) {
+    public void addCommand(CartCommand command) {
         commands.add(command);
     }
     public void executeCommands() {
-        for (Command command : commands) {
+        for (CartCommand command : commands) {
             command.execute();
         }
     }
