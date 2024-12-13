@@ -1,4 +1,8 @@
-package main.java.market;
+package main.java.market.cart;
+
+import main.java.market.Product;
+import main.java.market.ProductNameComparator;
+import main.java.market.ProductPriceComparator;
 
 public class ShoppingCart {
 
@@ -62,6 +66,10 @@ public class ShoppingCart {
 
     }
 
+    public Product [] getProducts() {
+        return products;
+    }
+
     public void sortByPrice() {
         java.util.Arrays.sort(products, java.util.Collections.reverseOrder(new ProductPriceComparator()));
     }
@@ -70,7 +78,7 @@ public class ShoppingCart {
         java.util.Arrays.sort(products, new ProductNameComparator());
     }
 
-    public void sortAfterAdd() {
+    private void sortAfterAdd() {
         java.util.Arrays.sort(products, java.util.Collections.reverseOrder(new ProductPriceComparator())
             .thenComparing(new ProductNameComparator()));
     }

@@ -2,9 +2,10 @@ package test.java.market;
 
 import org.junit.*;
 
-import main.java.market.ShoppingCart;
 import main.java.market.Product;
+import main.java.market.cart.ShoppingCart;
 
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class ShoppingCartTest {
@@ -36,55 +37,58 @@ public class ShoppingCartTest {
     @Test
     public void testSortByPrice() {
         ShoppingCart sut = new ShoppingCart();
-        Product testProduct = new Product("A32", "Cup", 4);
+        Product testProduct1 = new Product("A32", "Cup", 4);
         Product testProduct2 = new Product("A34", "Bowl", 10);
         Product testProduct3 = new Product("B64", "Horns", 2);
 
-        sut.addProduct(testProduct);
+        sut.addProduct(testProduct1);
         sut.addProduct(testProduct2);
         sut.addProduct(testProduct3);
         sut.sortByPrice();
-        assertEquals(Double.valueOf(10.), Double.valueOf(sut.products[0].getPrice()));
-        assertEquals(Double.valueOf(4.), Double.valueOf(sut.products[1].getPrice()));
-        assertEquals(Double.valueOf(2.), Double.valueOf(sut.products[2].getPrice()));
+        
+        Product[] products = sut.getProducts();
+        Product[] expectedProducts = {testProduct2, testProduct1, testProduct3};
+
+        assertArrayEquals(expectedProducts, products);
     }
 
     @Test
     public void testSortByName() {
         ShoppingCart sut = new ShoppingCart();
-        Product testProduct = new Product("A32", "Cup", 4);
-        Product testProduct2 = new Product("A34", "Bowl", 10);
+        Product testProduct1 = new Product("A32", "Bowl", 4);
+        Product testProduct2 = new Product("A34", "Cup", 10);
         Product testProduct3 = new Product("B64", "A-Horns", 4);
 
-        sut.addProduct(testProduct);
+        sut.addProduct(testProduct1);
         sut.addProduct(testProduct2);
         sut.addProduct(testProduct3);
         sut.sortByName();
-        assertEquals("A-Horns", sut.products[0].getName());
-        assertEquals("Bowl", sut.products[1].getName());
-        assertEquals("Cup", sut.products[2].getName());
+        
+        Product[] products = sut.getProducts();
+        Product[] expectedProducts = {testProduct3, testProduct1, testProduct2};
+
+        assertArrayEquals(expectedProducts, products);
     }
 
     @Test
     public void testSortAfterAdd() {
         ShoppingCart sut = new ShoppingCart();
-        Product testProduct = new Product("A32", "Cup", 4);
+        Product testProduct1 = new Product("A32", "Cup", 4);
         Product testProduct2 = new Product("A34", "Horns", 10);
         Product testProduct3 = new Product("B64", "Bowl", 30);
         Product testProduct4 = new Product("B24", "Aloe", 30);
         Product testProduct5 = new Product("B14", "Big Cup", 4);
 
-        sut.addProduct(testProduct);
+        sut.addProduct(testProduct1);
         sut.addProduct(testProduct2);
         sut.addProduct(testProduct3);
         sut.addProduct(testProduct4);
         sut.addProduct(testProduct5);
+
+        Product [] expectedProducts = {testProduct4, testProduct3, testProduct2, testProduct5, testProduct1};
+        Product [] products = sut.getProducts();
         
-        assertEquals("Aloe", sut.products[0].getName());
-        assertEquals("Bowl", sut.products[1].getName());
-        assertEquals("Horns", sut.products[2].getName());
-        assertEquals("Big Cup", sut.products[3].getName());
-        assertEquals("Cup", sut.products[4].getName());
+        assertArrayEquals(expectedProducts, products);
     }
 
     @Test
@@ -119,6 +123,7 @@ public class ShoppingCartTest {
         sut.addProduct(testProduct3);
         sut.addProduct(testProduct4);
         sut.addProduct(testProduct5);
+
         
         assertEquals("Bowl", sut.FindMostExpensive().getName());
     }
@@ -141,4 +146,6 @@ public class ShoppingCartTest {
         assertEquals(Double.valueOf(94.), Double.valueOf(sut.getTotalPrice()));
 
     }
+
+    
 }
