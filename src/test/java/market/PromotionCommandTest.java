@@ -1,7 +1,6 @@
 package test.java.market;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 import org.junit.Test;
@@ -91,7 +90,6 @@ public class PromotionCommandTest {
         Product testProduct2 = new Product("A34", "Horns", 60);
         Product testProduct3 = new Product("B64", "Bowl", 40);
         Product testProduct4 = new Product("B24", "Speakers", 200);
-        Product companyMug = new Product("A32", "Company Mug", 0);
 
         cart.addProduct(testProduct1);
         cart.addProduct(testProduct2);
